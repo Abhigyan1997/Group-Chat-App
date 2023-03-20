@@ -2,17 +2,18 @@ const path = require('path');
 const fs=require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const helmet=require('helmet');
 const compression=require('compression');
 const morgan=require('morgan');
+
 const app = express();
 
 
 const dotenv = require('dotenv');
 dotenv.config();
-const sequelize = require('./util/database');
 
-//const User=require('./models/user');
+const sequelize = require('./util/database');
 
 
 const accessLogStream=fs.createWriteStream(
@@ -21,7 +22,9 @@ const accessLogStream=fs.createWriteStream(
     );
 
 var cors = require('cors');
-app.use(cors());
+app.use(cors({
+    origin:'*',
+}));
 
 const userRoutes = require('./routes/user');
 
@@ -37,7 +40,7 @@ app.use('/user',userRoutes);
 
 
 sequelize 
- .sync({force:true})
+ .sync({alter:true})
  .then(result => {
     app.listen(5000);
  })

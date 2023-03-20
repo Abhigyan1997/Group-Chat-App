@@ -14,8 +14,11 @@ email:{
      allowNull:false,
      unique:true
 } ,
-phone:Sequelize.INTEGER,
+phone:{
+   type: Sequelize.STRING,
+   allowNull:true,
 
+},
 password:Sequelize.STRING,
 }); 
   
