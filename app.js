@@ -27,6 +27,7 @@ app.use(cors({
 }));
 
 const userRoutes = require('./routes/user');
+const loginRoutes=require('./routes/user')
 
 app.use(helmet());
 app.use(compression());
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 app.use('/user',userRoutes);
+app.use('/user',loginRoutes)
 
 
 sequelize 

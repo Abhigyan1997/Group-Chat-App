@@ -5,10 +5,13 @@ async function login(event) {
             email:event.target.email.value,
             password:event.target.password.value
         }
-     const response= await axios.post('http://localhost:5000/user/login',obj)
-        if(response.status=201){
-             //window.location.href="../ExpenseApp.html"
-             alert("User Succesfullu logged in")
+     const token=localStorage.getItem('token');
+
+     const response= await axios.post('http://localhost:5000/user/login',obj,{headers:{"Authorization":token}})
+
+        if(response.status=204){
+        
+             alert("User Succesfully logged in")
         }
         else{
             throw new Error('failed to login')
