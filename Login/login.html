@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <style>
+      /* Styles for the login form */
+      #login-form {
+        width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      #login-form label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      #login-form input[type="text"],
+      #login-form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      #login-form button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      #login-form button:hover {
+        background-color: #45a049;
+      }
+      /* Styles for the signup button */
+      #signup-button {
+        display: block;
+        margin: 20px auto 0;
+        width: 150px;
+        padding: 10px;
+        background-color: #f10b0b;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-align: center
+      }
+      #signup-button:hover {
+        background-color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="login-form">
+      <h1>Login</h1>
+      <form  onsubmit="login(event)">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    <button id="signup-button" onclick="location.href='../SignUp/signup.html'">Existing User -> Sign Up</button>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="login.js"></script>
+  </body>
+</html>
