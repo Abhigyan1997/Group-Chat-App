@@ -2,6 +2,10 @@ const path = require('path');
 const fs=require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+dotenv.config();
+
+const sequelize = require('./util/database');
 
 const helmet=require('helmet');
 const compression=require('compression');
@@ -10,11 +14,8 @@ const morgan=require('morgan');
 const app = express();
 
 
-const dotenv = require('dotenv');
-dotenv.config();
-
-const sequelize = require('./util/database');
-
+const User=require("./models/user")
+const chats=require("./models/chat")
 
 const accessLogStream=fs.createWriteStream(
     path.join(__dirname,'access.log'),
@@ -28,6 +29,7 @@ app.use(cors({
 
 const userRoutes = require('./routes/user');
 const loginRoutes=require('./routes/user')
+const chatRoute = require('./routes/chat');
 
 app.use(helmet());
 app.use(compression());
@@ -39,10 +41,13 @@ app.use(express.json());
 
 app.use('/user',userRoutes);
 app.use('/user',loginRoutes)
+app.use('/user', chatRoute);
 
+User.hasMany(chats)
+chats.belongsTo(User)
 
 sequelize 
- .sync({alter:true})
+ .sync()
  .then(result => {
     app.listen(5000);
  })

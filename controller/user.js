@@ -1,7 +1,11 @@
 const User=require('../models/user');
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
-  
+
+function generateAccessToken(id,Name,Email){
+  console.log("token",Name,id,Email)
+ return  jwt.sign({id:id,Name:Name,Email:Email},'SecretKey')
+}
 
   exports.signup= async (req , res)=>{
     try{
@@ -22,9 +26,9 @@ const jwt=require('jsonwebtoken');
   }
   }
 
-  function generateAccessToken(id,name){ 
-    return jwt.sign({userId:id,name:name},'SecretKey')
-  }
+  // function generateAccessToken(id,name){ 
+  //   return jwt.sign({userId:id,name:name},'SecretKey')
+  // }
 
 
   exports.login = async (req, res) => {
@@ -40,7 +44,7 @@ const jwt=require('jsonwebtoken');
             throw new Error("Something went wrong")
           }
           if(result===true){
-            res.status(200).json({ success: true, message: 'user logged in successfully',token:generateAccessToken(user[0].id,user[0].name) });
+            res.status(200).json({ success: true, message: 'user logged in successfully',token:generateAccessToken(user[0].id,user[0].name,user[0].email) });
           }
         })
       } else if (user.length === 0) {
@@ -52,3 +56,4 @@ const jwt=require('jsonwebtoken');
       res.status(500).json({ message: err, success: false });
     }
   };
+  

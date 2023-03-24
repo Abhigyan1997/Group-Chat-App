@@ -1,25 +1,27 @@
-const jwt=require("jsonwebtoken");
-
-const User=require('../models/user');
+const jwt=require('jsonwebtoken')
+const User=require('../models/user')
 
 const authenticate=(req,res,next)=>{
     try{
-        const token=req.header('Authorization');
+        const token = req.header('Authorization')
         console.log(token);
-        const user=jwt.verify(token,'SecretKey');
-        console.log('userID >>>>', user.userId);
-        User.findByPk(user.userId)
-        .then(user=>{
-            req.user=user;
-            next();
+        const user=jwt.verify(token,'SecretKey')
+        console.log(user);
+        User.findByPk(user.id).then(user=>{
+            
+            req.user=user
+            next()
         })
-    }catch(err){
-        console.log(err);
-        return res.status(401).json({success:false}) 
+        .catch(err=>{
+            res.status(500).json({err:err})
+        })
+    }
+    catch(err){
+        console.log(err)
+        res.status(501).json({err:"something went wrong"})
     }
 }
 
-
 module.exports={
-    authenticate    
+    authenticate
 }
