@@ -9,7 +9,7 @@ body {
     border: 1px solid #ccc;
   }
   
-  #output {
+  #chat-messages{
     height: 200px;
     overflow-y: scroll;
     margin-bottom: 10px;

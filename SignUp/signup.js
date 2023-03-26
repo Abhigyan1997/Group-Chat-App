@@ -7,9 +7,10 @@ async function signup(event) {
             phone:event.target.phone.value,
             password:event.target.password.value
         }
+        
      const response= await axios.post('http://localhost:5000/user/signup',obj)
         if(response.status=201){
-            // window.location.href="./login.html"
+            window.location.href="../Login/login.html"
             alert ("Successfull Signup")
             console.log(response);
         }

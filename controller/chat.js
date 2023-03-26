@@ -17,12 +17,16 @@ exports.chat = async (req,res,next)=>{
   }
   
 exports.getchat = async (req, res, next) => {
-    try {
-        const messages = await Message.findAll()
-        res.status(201).json({ success: true, message: messages });
+  try {
+      const message = await Message.findAll()
+      if (message.length > 0) {
+        res.status(201).json({ message: message })
+    } else {
+        res.status(401).json({ err: "empty chats" })
     }
-    catch (err) {
-        res.status(500).json({ message: err, success: false })
-    }
+} catch (err) {
+    res.status(401).json({ err: err })
+}
+
 }
 

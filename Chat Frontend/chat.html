@@ -10,16 +10,21 @@
 		<div class="chat-header">
 			<h2>Group Chat</h2>
 		</div>
-		<div class="chat-box"></div>
-		<div class="chat-form">
-            <div id="output"></div>
-			<input class="chat-input" type="text" id="chat-input" placeholder="Type your message here...">
-			<button id="send" onclick="sendMessage(event)">Send</button>
-		</div>
-	</div>
-
-	
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<div class="chat-window">
+			<div class="user-list">
+			</div>
+            <div id="chat-messages">
+		
+			</div>
+			</div>
+		
+			<form id="chat-form">
+				<input class="chat-input" type="text" id="chat-input" placeholder="Type your message here...">
+                <button id="send" onclick="sendMessage(event)">Send</button>
+			</form>
+			</div>
+			
+			<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="script.js"></script>
 </body>
 </html>

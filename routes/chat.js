@@ -5,5 +5,6 @@ const auth=require('../middleware/auth');
 
 
 router.post('/message',auth.authenticate, chatController.chat);
+router.get('/getmessage',auth.authenticate, chatController.getchat);
 
 module.exports = router;
